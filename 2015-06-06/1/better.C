@@ -1,4 +1,5 @@
 #include "../comb.h"
+#include "../util.h"
 
 #include <algorithm>
 #include <cinttypes>
@@ -35,18 +36,6 @@ bool equal(const Edge lhs, const Edge rhs) {
 
 typedef std::vector<Edge> RawEdges;
 typedef Comb<Index, Arc> Graph;
-
-void compactify_to(const RawEdges& raw, Index n, Graph* g) {
-  Index src = 0;
-  for (const Edge e : raw) {
-    for (; src != e.src; ++src)
-      g->end_row();
-    g->append(e.dst);
-  }
-
-  for (; src != n; ++src)
-    g->end_row();
-}
 
 void read_graph(FILE* in, Index n, Index m, Graph* g) {
   RawEdges edges(2 * m);
