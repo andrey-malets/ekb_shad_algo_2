@@ -21,6 +21,10 @@ template<typename I, typename T> class Comb {
     return index_.size();
   }
 
+  size_t size() const {
+    return data_.size();
+  }
+
   size_t length(size_t row) const {
     return index_[row] - get_start(row);
   }
